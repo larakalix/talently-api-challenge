@@ -1,4 +1,4 @@
-import type { Task } from "../../models/task";
+import type { Task } from "../../models/task.model";
 import {
     collection,
     addDoc,
@@ -10,12 +10,13 @@ import {
     Timestamp,
 } from "firebase/firestore";
 import { injectable } from "tsyringe";
-import FirebaseInstance from "../../config/firebase-config";
+import FirebaseInstance from "../../config/firebase.config";
+import { SCHEMAS } from "config/schema.config";
 
 @injectable()
 export class TaskRepository {
     private firestore = FirebaseInstance.getInstance().db;
-    private tasksCollection = collection(this.firestore, "tasks");
+    private tasksCollection = collection(this.firestore, SCHEMAS.tasks.name);
 
     async getTasksByUserId(userId: string): Promise<Task[]> {
         try {

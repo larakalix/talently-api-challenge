@@ -1,6 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { container } from "tsyringe";
-import { TaskController } from "controllers/task/task-controller";
+import { TaskController } from "controllers/task/task.controller";
 
 const taskRoutes = Router();
 const taskController = container.resolve(TaskController);
