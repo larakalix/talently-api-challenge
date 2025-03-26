@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import "reflect-metadata";
 import authRoutes from "./routes/auth/auth.route";
 import taskRoutes from "./routes/task/task.route";
+import { globalEnv } from "./config/env.config";
 
 dotenv.config();
 

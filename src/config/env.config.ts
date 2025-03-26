@@ -1,4 +1,8 @@
+import dotenv from "dotenv";
 import { z } from "zod";
+
+dotenv.config();
+
 
 const {
     FIREBASE_API_KEY: apiKey,
