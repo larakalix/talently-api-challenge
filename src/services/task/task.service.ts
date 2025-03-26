@@ -1,7 +1,7 @@
-import { handleTaskSchema, type Task } from "../../models/task.model";
+import { ApiError } from "@/types/errors.type";
+import { handleTaskSchema, type Task } from "@/models/task.model";
 import { injectable, inject } from "tsyringe";
-import { TaskRepository } from "repositories/task/task.repository";
-import { ApiError } from "types/errors.type";
+import { TaskRepository } from "@/repositories/task/task.repository";
 
 @injectable()
 export class TaskService {

@@ -1,9 +1,15 @@
 import { z } from "zod";
 
-export const userSchema = z.object({
-    id: z.string(),
+export const authSchema = z.object({
     email: z.string().email(),
-    name: z.string().min(1, "Name is required"),
+    password: z.string().min(6),
 });
+
+export const userSchema = authSchema.merge(
+    z.object({
+        id: z.string(),
+        name: z.string().min(1, "Name is required"),
+    })
+);
 
 export type User = z.infer<typeof userSchema>;

@@ -1,16 +1,16 @@
-import { ApiError } from "types/errors.type";
-
+import type { ApiError } from "./types/errors.type";
+import type { Application, Request, Response, NextFunction } from "express";
+import express from "express";
 import "reflect-metadata";
-import express, { Application, Request, Response, NextFunction } from "express";
-import taskRoutes from "routes/task/task.routes";
-import userRoutes from "routes/user/user.route";
+import authRoutes from "@/routes/auth/auth.route";
+import taskRoutes from "@/routes/task/task.route";
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 const app: Application = express();
 app.use(express.json());
 
 // Use the auth and task routes
-app.use("/auth", userRoutes);
+app.use("/auth", authRoutes);
 app.use("/tasks", taskRoutes);
 
 // Global error handler middleware

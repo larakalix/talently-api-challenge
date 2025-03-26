@@ -1,8 +1,8 @@
-import type { ApiResponse } from "types/api.type";
-import type { Task } from "models/task.model";
-import { Request, Response, NextFunction } from "express";
-import { TaskService } from "services/task/task.service";
+import type { ApiResponse } from "@/types/api.type";
+import type { Task } from "@/models/task.model";
+import type { Request, Response, NextFunction } from "express";
 import { injectable, inject } from "tsyringe";
+import { TaskService } from "@/services/task/task.service";
 
 @injectable()
 export class TaskController {
