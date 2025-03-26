@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { container } from "tsyringe";
-import { TaskController } from "@/controllers/task/task.controller";
-import { authMiddleware } from "@/middlewares/auth.middleware";
+import { TaskController } from "./../../controllers/task/task.controller";
+import { authMiddleware } from "./../../middlewares/auth.middleware";
 
 const taskRoutes = Router();
 const taskController = container.resolve(TaskController);

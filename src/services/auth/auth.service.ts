@@ -3,7 +3,7 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from "firebase/auth";
-import FirebaseInstance from "@/config/firebase.config";
+import FirebaseInstance from "./../../config/firebase.config";
 
 @injectable()
 export class AuthService {

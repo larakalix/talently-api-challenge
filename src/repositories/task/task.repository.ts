@@ -1,4 +1,4 @@
-import type { Task } from "@/models/task.model";
+import type { Task } from "./../../models/task.model";
 import {
     collection,
     addDoc,
@@ -10,8 +10,8 @@ import {
     Timestamp,
 } from "firebase/firestore";
 import { injectable } from "tsyringe";
-import FirebaseInstance from "@/config/firebase.config";
-import { SCHEMAS } from "@/config/schema.config";
+import FirebaseInstance from "./../../config/firebase.config";
+import { SCHEMAS } from "./../../config/schema.config";
 
 @injectable()
 export class TaskRepository {

@@ -1,5 +1,5 @@
 import type { Request, Response, NextFunction } from "express";
-import { ApiError } from "types/errors.type";
+import { ApiError } from "./../types/errors.type";
 
 export const authMiddleware = async (
     req: Request,

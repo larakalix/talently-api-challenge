@@ -1,5 +1,5 @@
-import { taskSchema } from "models/task.model";
-import { userSchema } from "models/user.model";
+import { taskSchema } from "./../models/task.model";
+import { userSchema } from "./../models/user.model";
 
 export const SCHEMAS = {
     users: {

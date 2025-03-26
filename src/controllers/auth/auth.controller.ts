@@ -1,8 +1,8 @@
-import type { ApiResponse } from "@/types/api.type";
-import { authSchema, type User } from "@/models/user.model";
+import type { ApiResponse } from "./../../types/api.type";
+import { authSchema, type User } from "./../../models/user.model";
 import { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
-import { AuthService } from "@/services/auth/auth.service";
+import { AuthService } from "./../../services/auth/auth.service";
 
 @injectable()
 export class AuthController {
@@ -15,7 +15,7 @@ export class AuthController {
                 data.email,
                 data.password
             );
-            
+
             return res.status(201).json({
                 data: user,
                 message: "User created successfully",

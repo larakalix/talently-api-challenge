@@ -1,4 +1,4 @@
-import { AuthController } from "@/controllers/auth/auth.controller";
+import { AuthController } from "./../../controllers/auth/auth.controller";
 import { Router } from "express";
 import { container } from "tsyringe";
 

@@ -1,9 +1,12 @@
 import type { ApiError } from "./types/errors.type";
 import type { Application, Request, Response, NextFunction } from "express";
 import express from "express";
+import dotenv from "dotenv";
 import "reflect-metadata";
-import authRoutes from "@/routes/auth/auth.route";
-import taskRoutes from "@/routes/task/task.route";
+import authRoutes from "./routes/auth/auth.route";
+import taskRoutes from "./routes/task/task.route";
+
+dotenv.config();
 
 const PORT = process.env.PORT || 8000;
 const app: Application = express();
@@ -12,6 +15,10 @@ app.use(express.json());
 // Use the auth and task routes
 app.use("/auth", authRoutes);
 app.use("/tasks", taskRoutes);
+
+app.use("/", (req, res) => {
+    res.send("Hello World");
+});
 
 // Global error handler middleware
 app.use((err: ApiError, req: Request, res: Response, next: NextFunction) => {
