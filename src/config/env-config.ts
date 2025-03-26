@@ -1,13 +1,31 @@
 import { z } from "zod";
 
-const { FIREBASE_KEY: SecretKey, DATABASE_URL: DatabaseUrl } = process.env;
+const {
+    FIREBASE_API_KEY: apiKey,
+    FIREBASE_AUTH_DOMAIN: authDomain,
+    FIREBASE_APP_ID: appId,
+    FIREBASE_STORAGE_BUCKET: storageBucket,
+    FIREBASE_MESSAGE_SENDER_ID: messagingSenderId,
+    FIREBASE_PROJECT_ID: projectId,
+    FIREBASE_MEASUREMENT_ID: measurementId,
+} = process.env;
 
 export const envConfigSchema = z.object({
-    DatabaseUrl: z.string().nonempty(),
-    SecretKey: z.string().nonempty(),
+    appId: z.string().nonempty(),
+    apiKey: z.string().nonempty(),
+    authDomain: z.string().nonempty(),
+    projectId: z.string().nonempty(),
+    storageBucket: z.string().nonempty(),
+    messagingSenderId: z.string().nonempty(),
+    measurementId: z.string().nonempty(),
 });
 
 export const globalEnv = {
-    DatabaseUrl,
-    SecretKey,
+    apiKey,
+    authDomain,
+    appId,
+    storageBucket,
+    messagingSenderId,
+    projectId,
+    measurementId,
 } as z.infer<typeof envConfigSchema>;
