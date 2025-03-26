@@ -1,16 +1,13 @@
 import { z } from "zod";
 
-const {
-    FIREBASE_KEY: SecretKey,
-    API_URL: ApiUrl,
- } = process.env;
+const { FIREBASE_KEY: SecretKey, DATABASE_URL: DatabaseUrl } = process.env;
 
 export const envConfigSchema = z.object({
-    ApiUrl: z.string().nonempty(),
+    DatabaseUrl: z.string().nonempty(),
     SecretKey: z.string().nonempty(),
 });
 
 export const globalEnv = {
-    ApiUrl,
+    DatabaseUrl,
     SecretKey,
 } as z.infer<typeof envConfigSchema>;
