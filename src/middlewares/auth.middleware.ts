@@ -7,11 +7,11 @@ export const authMiddleware = async (
     next: NextFunction
 ) => {
     try {
-        const authHeader = req.headers.authorization;
-        if (!authHeader) throw new ApiError("No token provided", 401);
+        // const authHeader = req.headers.authorization;
+        // if (!authHeader) throw new ApiError("No token provided", 401);
 
-        const token = authHeader.split("Bearer ")[1];
-        if (!token) throw new ApiError("Invalid token format", 401);
+        // const token = authHeader.split("Bearer ")[1];
+        // if (!token) throw new ApiError("Invalid token format", 401);
 
         next();
     } catch (error) {

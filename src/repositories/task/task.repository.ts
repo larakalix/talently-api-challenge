@@ -22,12 +22,20 @@ export class TaskRepository {
         try {
             const q = query(
                 this.tasksCollection,
-                where("userId", "==", userId),
+                // where("userId", "==", userId),
                 where("status", "!=", "deleted")
             );
             const snapshot = await getDocs(q);
-
-            return snapshot.docs.map((doc: any) => doc.data() as Task);
+            
+            return snapshot.docs.map((doc: any) => {
+                return {
+                    ...doc.data(),
+                    id: doc.id,
+                    createdAt: doc.data().createdAt.toDate(),
+                    updatedAt: doc.data().updatedAt?.toDate(),
+                    deletedAt: doc.data().deletedAt?.toDate(),
+                };
+            });
         } catch (error) {
             throw new Error("Error retrieving tasks: " + error);
         }

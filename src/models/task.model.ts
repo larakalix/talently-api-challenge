@@ -20,6 +20,7 @@ export const taskSchema = z.object({
 
 export const handleTaskSchema = taskSchema.omit({
     id: true,
+    userId: true,
     createdAt: true,
     updatedAt: true,
     deletedAt: true,
