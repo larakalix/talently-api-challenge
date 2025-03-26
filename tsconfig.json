@@ -12,5 +12,5 @@
         "skipLibCheck": true,
         "outDir": "./dist"
     },
-    "include": ["src"]
+    "include": ["./*.js", "src/**/*.ts", "api/**/*.ts", "test/**/*.ts"]
 }

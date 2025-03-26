@@ -26,3 +26,4 @@ src/config/serviceAccountKey.json
 # OS generated files
 .DS_Store
 Thumbs.db
+.vercel

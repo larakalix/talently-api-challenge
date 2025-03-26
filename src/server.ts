@@ -1,14 +1,14 @@
+import "reflect-metadata";
 import dotenv from "dotenv";
 dotenv.config();
 
 import type { ApiError } from "./types/errors.type";
 import type { Application, Request, Response, NextFunction } from "express";
 import express from "express";
-import "reflect-metadata";
 import authRoutes from "./routes/auth/auth.route";
 import taskRoutes from "./routes/task/task.route";
 
-const PORT = process.env.PORT || 8000;
+
 const app: Application = express();
 app.use(express.json());
 
@@ -32,7 +32,4 @@ router.use((err: ApiError, req: Request, res: Response, next: NextFunction) => {
     });
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+export default app;
