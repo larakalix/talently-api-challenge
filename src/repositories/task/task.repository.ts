@@ -20,14 +20,16 @@ export class TaskRepository {
 
     async getTasksByUserId(userId: string): Promise<Task[]> {
         try {
+            if (!userId) throw new Error("User id is required");
+
             const q = query(
                 this.tasksCollection,
-                // where("userId", "==", userId),
+                where("userId", "==", `${userId}`),
                 where("status", "!=", "deleted")
             );
+
             const snapshot = await getDocs(q);
-            
-            return snapshot.docs.map((doc: any) => {
+            const tasks: Task[] = snapshot.docs.map((doc: any) => {
                 return {
                     ...doc.data(),
                     id: doc.id,
@@ -36,7 +38,10 @@ export class TaskRepository {
                     deletedAt: doc.data().deletedAt?.toDate(),
                 };
             });
+
+            return tasks;
         } catch (error) {
+            console.log("error", error);
             throw new Error("Error retrieving tasks: " + error);
         }
     }

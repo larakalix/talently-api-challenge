@@ -3,6 +3,7 @@ import type { Task } from "./../../models/task.model";
 import type { Request, Response, NextFunction } from "express";
 import { injectable, inject } from "tsyringe";
 import { TaskService } from "./../../services/task/task.service";
+import { userMiddleware } from "./../../middlewares/user.middleware";
 
 @injectable()
 export class TaskController {
@@ -10,7 +11,7 @@ export class TaskController {
 
     async getTasksByUserId(req: Request, res: Response, next: NextFunction) {
         try {
-            const userId = req.params.userId;
+            const userId = await userMiddleware(req);
             const tasks = await this.taskService.getTasksByUserId(userId);
 
             return res.status(200).json({
@@ -29,7 +30,12 @@ export class TaskController {
 
     async createTask(req: Request, res: Response, next: NextFunction) {
         try {
-            const task = await this.taskService.createTask(req.body);
+            const userId = await userMiddleware(req);
+            const task = await this.taskService.createTask({
+                ...req.body,
+                userId,
+            });
+
             return res.status(201).json({
                 data: task,
                 message: "Task created successfully",
@@ -46,6 +52,7 @@ export class TaskController {
                 ...req.body,
                 id: req.params.id,
             });
+
             return res.status(201).json({
                 data: task,
                 message: "Task updated successfully",
@@ -59,6 +66,7 @@ export class TaskController {
     async deleteTask(req: Request, res: Response, next: NextFunction) {
         try {
             await this.taskService.deleteTask(req.params.id);
+
             return res.status(200).json({
                 data: null,
                 message: "Task deleted successfully",
