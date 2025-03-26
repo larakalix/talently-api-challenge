@@ -1,7 +1,8 @@
 import * as admin from "firebase-admin";
+import accountKey from "./account-key.json";
 
 admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
+    credential: admin.credential.cert(accountKey as admin.ServiceAccount),
 });
 
 export const auth = admin.auth();
