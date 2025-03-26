@@ -1,3 +1,4 @@
+import type { AuthUser } from "@/models/user.model";
 import { injectable } from "tsyringe";
 import {
     createUserWithEmailAndPassword,
@@ -9,27 +10,34 @@ import FirebaseInstance from "./../../config/firebase.config";
 export class AuthService {
     private auth = FirebaseInstance.getInstance().auth;
 
-    async signup(email: string, password: string) {
-        const userCredential = await createUserWithEmailAndPassword(
+    async signup(email: string, password: string): Promise<AuthUser> {
+        const { user } = await createUserWithEmailAndPassword(
             this.auth,
             email,
             password
         );
+
         return {
-            uid: userCredential.user.uid,
-            email: userCredential.user.email,
+            uid: user.uid,
+            email: user.email,
+            name: user?.displayName || "",
         };
     }
 
-    async signin(email: string, password: string) {
-        const userCredential = await signInWithEmailAndPassword(
+    async signin(email: string, password: string): Promise<AuthUser> {
+        const { user } = await signInWithEmailAndPassword(
             this.auth,
             email,
             password
         );
+
+        const token = await user.getIdToken();
+
         return {
-            uid: userCredential.user.uid,
-            email: userCredential.user.email,
+            uid: user.uid,
+            email: user.email,
+            name: user?.displayName || "",
+            token,
         };
     }
 }

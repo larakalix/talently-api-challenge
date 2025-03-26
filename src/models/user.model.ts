@@ -13,3 +13,10 @@ export const userSchema = authSchema.merge(
 );
 
 export type User = z.infer<typeof userSchema>;
+
+export type AuthUser = {
+    uid: string;
+    email: string;
+    name?: string;
+    token?: string;
+};

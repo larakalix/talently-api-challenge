@@ -1,5 +1,5 @@
 import type { ApiResponse } from "./../../types/api.type";
-import { authSchema, type User } from "./../../models/user.model";
+import { authSchema, type AuthUser } from "./../../models/user.model";
 import { Request, Response } from "express";
 import { injectable, inject } from "tsyringe";
 import { AuthService } from "./../../services/auth/auth.service";
@@ -20,7 +20,7 @@ export class AuthController {
                 data: user,
                 message: "User created successfully",
                 status: "success",
-            } as ApiResponse<User>);
+            } as ApiResponse<AuthUser>);
         } catch (error: any) {
             return res
                 .status(400)
@@ -40,7 +40,7 @@ export class AuthController {
                 data: session,
                 message: "User signed in successfully",
                 status: "success",
-            } as ApiResponse<User>);
+            } as ApiResponse<AuthUser>);
         } catch (error: any) {
             return res
                 .status(400)
