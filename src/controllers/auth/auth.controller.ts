@@ -22,6 +22,7 @@ export class AuthController {
                 status: "success",
             } as ApiResponse<AuthUser>);
         } catch (error: any) {
+            console.log("AuthController -> signup -> error", error);
             return res
                 .status(400)
                 .json({ success: false, message: error.message });
@@ -42,6 +43,7 @@ export class AuthController {
                 status: "success",
             } as ApiResponse<AuthUser>);
         } catch (error: any) {
+            console.log("AuthController -> signin -> error", error);
             return res
                 .status(400)
                 .json({ success: false, message: error.message });

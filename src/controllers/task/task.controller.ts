@@ -20,6 +20,7 @@ export class TaskController {
                 status: "success",
             } as ApiResponse<Task[]>);
         } catch (error) {
+            console.log("TaskController -> getTasksByUserId -> error", error);
             return res.status(500).json({
                 data: null,
                 message: "Error retrieving tasks",
@@ -42,6 +43,7 @@ export class TaskController {
                 status: "success",
             } as ApiResponse<Task>);
         } catch (error) {
+            console.log("TaskController -> createTask -> error", error);
             next(error);
         }
     }
@@ -59,6 +61,7 @@ export class TaskController {
                 status: "success",
             } as ApiResponse<Task>);
         } catch (error) {
+            console.log("TaskController -> updateTask -> error", error);
             next(error);
         }
     }
@@ -73,6 +76,7 @@ export class TaskController {
                 status: "success",
             } as ApiResponse<null>);
         } catch (error) {
+            console.log("TaskController -> deleteTask -> error", error);
             next(error);
         }
     }

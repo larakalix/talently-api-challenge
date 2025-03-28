@@ -31,19 +31,14 @@ export class TaskRepository {
             );
 
             const snapshot = await getDocs(q);
-            const tasks: Task[] = snapshot.docs.map((doc: any) => {
-                return {
-                    ...doc.data(),
-                    id: doc.id,
-                    createdAt: doc.data().createdAt.toDate(),
-                    updatedAt: doc.data().updatedAt?.toDate(),
-                    deletedAt: doc.data().deletedAt?.toDate(),
-                };
-            });
+            const tasks: Task[] = snapshot.docs.map((doc: any) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
 
             return tasks;
         } catch (error) {
-            console.log("error", error);
+            console.log("TaskRepository -> getTasksByUserId -> error", error);
             throw new Error("Error retrieving tasks: " + error);
         }
     }
@@ -53,6 +48,7 @@ export class TaskRepository {
             const docRef = await addDoc(this.tasksCollection, task);
             return { ...task, id: docRef.id };
         } catch (error) {
+            console.log("TaskRepository -> create -> error", error);
             throw new Error("Error creating task: " + error);
         }
     }
@@ -69,11 +65,12 @@ export class TaskRepository {
 
             return { ...task, id };
         } catch (error) {
+            console.log("TaskRepository -> update -> error", error);
             throw new Error("Error updating task: " + error);
         }
     }
 
-    async deleteTask(id: string): Promise<void> {
+    async delete(id: string): Promise<void> {
         try {
             if (!id) throw new Error("Task id is required");
 
@@ -83,6 +80,7 @@ export class TaskRepository {
                 deletedAt: Timestamp.fromDate(new Date()),
             });
         } catch (error) {
+            console.log("TaskRepository -> delete -> error", error);
             throw new Error("Error deleting task: " + error);
         }
     }

@@ -10,7 +10,10 @@ export class TaskService {
     ) {}
 
     async getTasksByUserId(userId: string): Promise<Task[]> {
-        return await this.taskRepository.getTasksByUserId(userId);
+        const tasks = await this.taskRepository.getTasksByUserId(userId);
+        console.log("TaskService -> getTasksByUserId -> tasks", tasks);
+
+        return tasks;
     }
 
     async createTask(task: Task): Promise<Task> {
@@ -34,6 +37,6 @@ export class TaskService {
     }
 
     async deleteTask(id: string): Promise<void> {
-        return await this.taskRepository.deleteTask(id);
+        return await this.taskRepository.delete(id);
     }
 }
