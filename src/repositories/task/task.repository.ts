@@ -7,6 +7,7 @@ import {
     getDocs,
     query,
     where,
+    orderBy,
     Timestamp,
 } from "firebase/firestore";
 import { injectable } from "tsyringe";
@@ -25,7 +26,8 @@ export class TaskRepository {
             const q = query(
                 this.tasksCollection,
                 where("userId", "==", `${userId}`),
-                where("status", "!=", "deleted")
+                where("status", "!=", "deleted"),
+                orderBy("createdAt", "desc")
             );
 
             const snapshot = await getDocs(q);
