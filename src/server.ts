@@ -11,16 +11,21 @@ import { swaggerSpec } from "./../swagger";
 import authRoutes from "./routes/auth/auth.route";
 import taskRoutes from "./routes/task/task.route";
 
+const CORS_CONFIG = {
+    origin: "*",
+    methods: "GET, POST, PUT, DELETE",
+    allowedHeaders: "Content-Type, Authorization",
+};
+
 const app: Application = express();
 app.use(express.json());
-app.use("/docs", cors(), swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(
-    cors({
-        origin: "*",
-        methods: "GET, POST, PUT, DELETE",
-        allowedHeaders: "Content-Type, Authorization",
-    })
+    "/docs",
+    cors(CORS_CONFIG),
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerSpec)
 );
+app.use(cors(CORS_CONFIG));
 
 // Use the router to add prefix for all routes
 const router = express.Router();
