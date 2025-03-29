@@ -1,6 +1,8 @@
-# 🚀 Task Management API
+# 🚀 Task Management API (Express)
 
 This is an Express-powered REST API for managing tasks, including authentication, CRUD operations, and user-specific data. The API is designed to use full JWT-based authentication and Firebase Firestore integration.
+
+The project follows clean code and SOLID principles to ensure maintainability, scalability, and testability, it is layered using Controller -> Service -> Repository pattern. Some key features like Dependency Injection and Singleton are used to manage instances, also the repository pattern abstracts Firestore operations, promoting separation of concerns and making the codebase easier to extend.
 
 ## 📋 Features
 
@@ -15,16 +17,14 @@ This is an Express-powered REST API for managing tasks, including authentication
 
 ## 📂 Endpoints Overview
 
-## 📂 Endpoints Overview
-
-| **Method** | **Endpoint**           | **Description**                  | **Auth Required** |
-| ---------- | ---------------------- | -------------------------------- | ----------------- |
-| `POST`     | `/api/auth/register`   | Register a new user              | ❌                |
-| `POST`     | `/api/auth/login`      | Login and get JWT token          | ❌                |
-| `GET`      | `/api/tasks`           | Get list of all active tasks     | ❌                |
-| `POST`     | `/api/tasks`           | Create a new task                | ✅                |
-| `PUT`      | `/api/tasks/{task_id}` | Update a task by ID              | ✅                |
-| `DELETE`   | `/api/tasks/{task_id}` | Soft-delete a task by ID         | ✅                |
+| **Method** | **Endpoint**           | **Description**              | **Auth Required** |
+| ---------- | ---------------------- | ---------------------------- | ----------------- |
+| `POST`     | `/api/auth/register`   | Register a new user          | ❌                |
+| `POST`     | `/api/auth/login`      | Login and get JWT token      | ❌                |
+| `GET`      | `/api/tasks`           | Get list of all active tasks | ❌                |
+| `POST`     | `/api/tasks`           | Create a new task            | ✅                |
+| `PUT`      | `/api/tasks/{task_id}` | Update a task by ID          | ✅                |
+| `DELETE`   | `/api/tasks/{task_id}` | Soft-delete a task by ID     | ✅                |
 
 ## 🛠️ Tech Stack
 
@@ -66,7 +66,7 @@ http://localhost:8000/docs
 ## 🔐 Authentication
 
 -   Use the /api/auth/login endpoint to get a JWT token.
--   Pass the token in the Authorization header as: Authorization: Bearer <your_token>_
+-   Pass the token in the Authorization header as: Authorization: Bearer <your*token>*
 
 ## 📚 API Docs (Swagger)
 
