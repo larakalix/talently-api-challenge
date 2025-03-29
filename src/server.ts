@@ -6,11 +6,14 @@ import type { ApiError } from "./types/errors.type";
 import type { Application, Request, Response, NextFunction } from "express";
 import express from "express";
 import cors from "cors";
+import swaggerUi from "swagger-ui-express";
+import { swaggerSpec } from "./../swagger";
 import authRoutes from "./routes/auth/auth.route";
 import taskRoutes from "./routes/task/task.route";
 
 const app: Application = express();
 app.use(express.json());
+app.use("/docs", cors(), swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 app.use(
     cors({
         origin: "*",

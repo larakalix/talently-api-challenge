@@ -32,6 +32,7 @@ export class AuthController {
     async signin(req: Request, res: Response): Promise<Response> {
         try {
             const data = authSchema.parse(req.body);
+            console.log("AuthController -> signin -> data", data);
             const session = await this.authService.signin(
                 data.email,
                 data.password
